@@ -98,7 +98,7 @@ public class StudentDAO {
                 studentDTO.setBirthDay(data[5]);
 
                 studentDTOs.add(studentDTO);
-                System.out.println(studentDTO);
+               
             }
             return studentDTOs;
         } finally {

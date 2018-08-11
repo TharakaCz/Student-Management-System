@@ -6,8 +6,19 @@
 package lk.ijse.sms.veiw;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import lk.ijse.sms.controller.CourseController;
+import lk.ijse.sms.controller.RegistationController;
+import lk.ijse.sms.controller.StudentController;
+import lk.ijse.sms.dto.CourseDTO;
+import lk.ijse.sms.dto.RegistationDTO;
+import lk.ijse.sms.dto.StudentDTO;
 
 /**
  *
@@ -18,9 +29,16 @@ public class Registation extends javax.swing.JPanel {
     /**
      * Creates new form Registation
      */
-    public Registation() {
+    private RegistationController controller;
+//    private StudentController studentController;
+//    private CourseController courseController;
+    public Registation() throws IOException {
         initComponents();
         ShowDate();
+//        courseController = new CourseController();
+//        studentController = new StudentController();
+        loardSid();
+        loardCid();
         txtRegistationID.setBorder(null);
         txtFee.setBorder(null);
         txtDate.setBorder(null);
@@ -89,6 +107,12 @@ public class Registation extends javax.swing.JPanel {
         jXLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         add(jXLabel5);
         jXLabel5.setBounds(110, 260, 130, 30);
+
+        cmbCourseID.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCourseIDItemStateChanged(evt);
+            }
+        });
         add(cmbCourseID);
         cmbCourseID.setBounds(260, 190, 430, 30);
         add(cmbStudentID);
@@ -200,7 +224,26 @@ public class Registation extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        
+        try {
+            String rid = txtRegistationID.getText();
+            String sid = cmbStudentID.getSelectedItem().toString();
+            String cid = cmbCourseID.getSelectedItem().toString();
+            String fee = txtFee.getText();
+            String date = txtDate.getText();
+            
+            RegistationDTO registationDTO = new RegistationDTO(rid, sid, cid, fee, date);
+            
+            boolean result = controller.save(registationDTO);
+            
+            if (result) {
+                JOptionPane.showMessageDialog(this, "Registation Succsess");
+            }else{
+                JOptionPane.showMessageDialog(this, "Registation Faild Pleace Try Again");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Registation.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
@@ -233,6 +276,20 @@ public class Registation extends javax.swing.JPanel {
        spDate.setBackground(new Color(0x58C9F7));
     }//GEN-LAST:event_txtDatePropertyChange
 
+    private void cmbCourseIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCourseIDItemStateChanged
+
+        try {
+            CourseController courseController = new CourseController();
+            CourseDTO courseDTO = courseController.search(cmbCourseID.getSelectedItem().toString());
+            txtFee.setText(courseDTO.getFee());
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Registation.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Registation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmbCourseIDItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXButton btnAddNew;
@@ -257,4 +314,37 @@ public class Registation extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXTextField txtFee;
     private org.jdesktop.swingx.JXTextField txtRegistationID;
     // End of variables declaration//GEN-END:variables
+
+    
+    private void loardSid() throws IOException{
+        StudentController studentController = new StudentController();
+        
+        List<StudentDTO>list;
+        
+        try {
+            list = studentController.getAllStudent();
+            for (StudentDTO studentDTO : list) {
+                cmbStudentID.addItem(studentDTO.getId());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Registation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    private void loardCid() throws IOException{
+        CourseController courseController = new CourseController();
+        
+        List<CourseDTO>list;
+        
+        try {
+            list = courseController.getAllCourse();
+            for (CourseDTO courseDTO : list) {
+                cmbCourseID.addItem(courseDTO.getId());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Registation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

@@ -11,24 +11,24 @@ package lk.ijse.sms.dto;
  */
 public class RegistationDTO {
     
-    private int rid;
+    private String rid;
 
-    private int sid;
+    private String sid;
 
-    private int cid;
+    private String cid;
 
-    private double fee;
+    private String fee;
 
     private String date;
 
     public RegistationDTO() {
     }
 
-    public RegistationDTO(int rid) {
-        this.rid = rid;
+    public RegistationDTO(String rid) {
+        this.rid = rid;  
     }
 
-    public RegistationDTO(int rid, int sid, int cid, double fee, String date) {
+    public RegistationDTO(String rid, String sid, String cid, String fee, String date) {
         this.rid = rid;
         this.sid = sid;
         this.cid = cid;
@@ -39,56 +39,56 @@ public class RegistationDTO {
     /**
      * @return the rid
      */
-    public int getRid() {
+    public String getRid() {
         return rid;
     }
 
     /**
      * @param rid the rid to set
      */
-    public void setRid(int rid) {
+    public void setRid(String rid) {
         this.rid = rid;
     }
 
     /**
      * @return the sid
      */
-    public int getSid() {
+    public String getSid() {
         return sid;
     }
 
     /**
      * @param sid the sid to set
      */
-    public void setSid(int sid) {
+    public void setSid(String sid) {
         this.sid = sid;
     }
 
     /**
      * @return the cid
      */
-    public int getCid() {
+    public String getCid() {
         return cid;
     }
 
     /**
      * @param cid the cid to set
      */
-    public void setCid(int cid) {
+    public void setCid(String cid) {
         this.cid = cid;
     }
 
     /**
      * @return the fee
      */
-    public double getFee() {
+    public String getFee() {
         return fee;
     }
 
     /**
      * @param fee the fee to set
      */
-    public void setFee(double fee) {
+    public void setFee(String fee) {
         this.fee = fee;
     }
 
@@ -107,9 +107,16 @@ public class RegistationDTO {
     }
 
     @Override
+    public int hashCode() {
+        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
     
 }
