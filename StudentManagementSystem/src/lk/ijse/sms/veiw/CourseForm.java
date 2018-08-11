@@ -5,6 +5,7 @@
  */
 package lk.ijse.sms.veiw;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,11 +28,15 @@ public class CourseForm extends javax.swing.JPanel {
 //    private CourseDTO courseDTO;
 //    private List<CourseDTO> courseDTOs;
     
-    public CourseForm() throws IOException  {
+    public CourseForm() throws IOException, Exception  {
         initComponents();
         loardAllCourse();
         controller = new CourseController();
-   
+        
+        txtID.setBorder(null);
+        txtName.setBorder(null);
+        txtFree.setBorder(null);
+        txtDuration.setBorder(null);
     }
 
     /**
@@ -52,21 +57,30 @@ public class CourseForm extends javax.swing.JPanel {
         btnSave = new org.jdesktop.swingx.JXButton();
         btnDelete = new org.jdesktop.swingx.JXButton();
         btnUpdate = new org.jdesktop.swingx.JXButton();
-        txtNew = new org.jdesktop.swingx.JXButton();
+        btntNew = new org.jdesktop.swingx.JXButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCourse = new org.jdesktop.swingx.JXTable();
         jXLabel3 = new org.jdesktop.swingx.JXLabel();
         jXLabel6 = new org.jdesktop.swingx.JXLabel();
         txtID = new org.jdesktop.swingx.JXTextField();
         lblSearch = new org.jdesktop.swingx.JXLabel();
+        spDuration = new org.jdesktop.swingx.JXLabel();
+        spID = new org.jdesktop.swingx.JXLabel();
+        spName = new org.jdesktop.swingx.JXLabel();
+        spFee = new org.jdesktop.swingx.JXLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         setLayout(null);
 
         jXLabel2.setText("Duration              :-");
         jXLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         add(jXLabel2);
-        jXLabel2.setBounds(130, 250, 119, 36);
+        jXLabel2.setBounds(130, 230, 119, 30);
 
         jXLabel4.setText("ID                        :-");
         jXLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -76,19 +90,39 @@ public class CourseForm extends javax.swing.JPanel {
         jXLabel5.setText("Fee                      :-");
         jXLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         add(jXLabel5);
-        jXLabel5.setBounds(130, 190, 119, 36);
+        jXLabel5.setBounds(130, 180, 119, 36);
 
         txtName.setPrompt("Input Course Name");
+        txtName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNameMouseClicked(evt);
+            }
+        });
         add(txtName);
-        txtName.setBounds(290, 140, 411, 28);
+        txtName.setBounds(290, 130, 411, 28);
 
         txtDuration.setPrompt("Input Course Duration");
+        txtDuration.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDurationMouseClicked(evt);
+            }
+        });
+        txtDuration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDurationActionPerformed(evt);
+            }
+        });
         add(txtDuration);
-        txtDuration.setBounds(290, 250, 411, 28);
+        txtDuration.setBounds(290, 230, 411, 28);
 
         txtFree.setPrompt("Input Course Fee");
+        txtFree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFreeMouseClicked(evt);
+            }
+        });
         add(txtFree);
-        txtFree.setBounds(290, 190, 411, 28);
+        txtFree.setBounds(290, 180, 411, 28);
 
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Save.png"))); // NOI18N
         btnSave.setText("SAVE");
@@ -123,16 +157,16 @@ public class CourseForm extends javax.swing.JPanel {
         add(btnUpdate);
         btnUpdate.setBounds(780, 200, 138, 36);
 
-        txtNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/New.png"))); // NOI18N
-        txtNew.setText("ADD NEW");
-        txtNew.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        txtNew.addActionListener(new java.awt.event.ActionListener() {
+        btntNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/New.png"))); // NOI18N
+        btntNew.setText("ADD NEW");
+        btntNew.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btntNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNewActionPerformed(evt);
+                btntNewActionPerformed(evt);
             }
         });
-        add(txtNew);
-        txtNew.setBounds(780, 20, 138, 34);
+        add(btntNew);
+        btntNew.setBounds(780, 20, 138, 34);
 
         tblCourse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,16 +189,47 @@ public class CourseForm extends javax.swing.JPanel {
         jXLabel6.setText("Name                   :-");
         jXLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         add(jXLabel6);
-        jXLabel6.setBounds(130, 140, 119, 36);
+        jXLabel6.setBounds(130, 130, 119, 36);
 
         txtID.setPrompt("Input ID");
+        txtID.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtIDMouseClicked(evt);
+            }
+        });
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
         add(txtID);
         txtID.setBounds(290, 80, 410, 30);
 
         lblSearch.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lblSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Search.png"))); // NOI18N
+        lblSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSearchMouseClicked(evt);
+            }
+        });
         add(lblSearch);
         lblSearch.setBounds(710, 80, 30, 30);
+
+        spDuration.setBackground(new java.awt.Color(153, 153, 153));
+        add(spDuration);
+        spDuration.setBounds(290, 260, 410, 2);
+
+        spID.setBackground(new java.awt.Color(153, 153, 153));
+        add(spID);
+        spID.setBounds(290, 110, 410, 2);
+
+        spName.setBackground(new java.awt.Color(153, 153, 153));
+        add(spName);
+        spName.setBounds(290, 160, 410, 2);
+
+        spFee.setBackground(new java.awt.Color(153, 153, 153));
+        add(spFee);
+        spFee.setBounds(290, 210, 410, 2);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -206,12 +271,67 @@ public class CourseForm extends javax.swing.JPanel {
        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void txtNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNewActionPerformed
+    private void btntNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntNewActionPerformed
        txtID.setText(null);
        txtName.setText(null);
        txtFree.setText(null);
        txtDuration.setText(null);
-    }//GEN-LAST:event_txtNewActionPerformed
+    }//GEN-LAST:event_btntNewActionPerformed
+
+    private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
+        
+        try {
+            CourseDTO search = controller.search(txtID.getText());
+            
+        } catch (Exception ex) {
+            Logger.getLogger(CourseForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lblSearchMouseClicked
+
+    private void txtDurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDurationActionPerformed
+     
+    }//GEN-LAST:event_txtDurationActionPerformed
+
+    private void txtIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIDMouseClicked
+       
+       spID.setBackground(new Color(0x58C9F7));
+       spName.setBackground(new Color(153,153,153));
+       spFee.setBackground(new Color(153,153,153));
+       spDuration.setBackground(new Color(153,153,153));
+       
+    }//GEN-LAST:event_txtIDMouseClicked
+
+    private void txtNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNameMouseClicked
+       spID.setBackground(new Color(153,153,153));
+       spName.setBackground(new Color(0x58C9F7));
+       spFee.setBackground(new Color(153,153,153));
+       spDuration.setBackground(new Color(153,153,153));
+    }//GEN-LAST:event_txtNameMouseClicked
+
+    private void txtFreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFreeMouseClicked
+       spID.setBackground(new Color(153,153,153));
+       spName.setBackground(new Color(153,153,153));
+       spFee.setBackground(new Color(0x58C9F7));
+       spDuration.setBackground(new Color(153,153,153));
+    }//GEN-LAST:event_txtFreeMouseClicked
+
+    private void txtDurationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDurationMouseClicked
+       spID.setBackground(new Color(153,153,153));
+       spName.setBackground(new Color(153,153,153));
+       spFee.setBackground(new Color(153,153,153));
+       spDuration.setBackground(new Color(0x58C9F7));
+    }//GEN-LAST:event_txtDurationMouseClicked
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+       
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+       spID.setBackground(new Color(153,153,153));
+       spName.setBackground(new Color(153,153,153));
+       spFee.setBackground(new Color(153,153,153));
+       spDuration.setBackground(new Color(153,153,153));
+    }//GEN-LAST:event_formMouseClicked
 
 
     
@@ -219,6 +339,7 @@ public class CourseForm extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXButton btnDelete;
     private org.jdesktop.swingx.JXButton btnSave;
     private org.jdesktop.swingx.JXButton btnUpdate;
+    private org.jdesktop.swingx.JXButton btntNew;
     private javax.swing.JScrollPane jScrollPane1;
     private org.jdesktop.swingx.JXLabel jXLabel2;
     private org.jdesktop.swingx.JXLabel jXLabel3;
@@ -226,15 +347,18 @@ public class CourseForm extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXLabel jXLabel5;
     private org.jdesktop.swingx.JXLabel jXLabel6;
     private org.jdesktop.swingx.JXLabel lblSearch;
+    private org.jdesktop.swingx.JXLabel spDuration;
+    private org.jdesktop.swingx.JXLabel spFee;
+    private org.jdesktop.swingx.JXLabel spID;
+    private org.jdesktop.swingx.JXLabel spName;
     private org.jdesktop.swingx.JXTable tblCourse;
     private org.jdesktop.swingx.JXTextField txtDuration;
     private org.jdesktop.swingx.JXTextField txtFree;
     private org.jdesktop.swingx.JXTextField txtID;
     private org.jdesktop.swingx.JXTextField txtName;
-    private org.jdesktop.swingx.JXButton txtNew;
     // End of variables declaration//GEN-END:variables
 
-    public final void loardAllCourse(){
+    public final void loardAllCourse()throws Exception{
         
         
         try {

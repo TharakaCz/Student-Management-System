@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 import lk.ijse.sms.dto.StudentDTO;
 
 /**
@@ -22,6 +23,8 @@ import lk.ijse.sms.dto.StudentDTO;
 public class StudentDAO {
     
     private final File file = new File("E:/Sms Data/student.txt");
+    private static ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    
     
     private FileWriter fileWriter;
     private FileReader fileReader;
@@ -32,7 +35,7 @@ public class StudentDAO {
  
     
    public StudentDAO() throws IOException {
-       fileWriter = new FileWriter(file);
+       fileWriter = new FileWriter(file,true);
        fileReader = new FileReader(file);
        
        bufferedWriter = new BufferedWriter(fileWriter);
@@ -62,7 +65,7 @@ public class StudentDAO {
            return true;
        } finally {
            
-           if (bufferedWriter !=null) {
+           if (bufferedWriter != null) {
                bufferedWriter.close();
                
            }
