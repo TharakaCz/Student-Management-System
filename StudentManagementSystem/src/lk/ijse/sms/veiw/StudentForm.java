@@ -5,7 +5,10 @@
  */
 package lk.ijse.sms.veiw;
 
+import java.awt.Color;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lk.ijse.sms.controller.StudentController;
 import lk.ijse.sms.dto.StudentDTO;
@@ -24,6 +27,13 @@ public class StudentForm extends javax.swing.JPanel {
         initComponents();
         
         controller = new StudentController();
+        
+        txtID.setBorder(null);
+        txtAddress.setBorder(null);
+        txtBirthDay.setBorder(null);
+        txtContactNo.setBorder(null);
+        txtEmail.setBorder(null);
+        txtName.setBorder(null);
     }
 
     /**
@@ -55,8 +65,19 @@ public class StudentForm extends javax.swing.JPanel {
         txtID = new org.jdesktop.swingx.JXTextField();
         jXLabel7 = new org.jdesktop.swingx.JXLabel();
         lblSearch = new org.jdesktop.swingx.JXLabel();
+        spID = new org.jdesktop.swingx.JXLabel();
+        spName = new org.jdesktop.swingx.JXLabel();
+        spAddress = new org.jdesktop.swingx.JXLabel();
+        spEmail = new org.jdesktop.swingx.JXLabel();
+        spContactNo = new org.jdesktop.swingx.JXLabel();
+        spBirthDay = new org.jdesktop.swingx.JXLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         setLayout(null);
 
         jXLabel2.setText("Birth Day                  :-");
@@ -85,29 +106,74 @@ public class StudentForm extends javax.swing.JPanel {
         jXLabel6.setBounds(70, 260, 176, 32);
 
         txtBirthDay.setPrompt("input Bitth Day");
+        txtBirthDay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtBirthDayMouseClicked(evt);
+            }
+        });
+        txtBirthDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBirthDayActionPerformed(evt);
+            }
+        });
         add(txtBirthDay);
-        txtBirthDay.setBounds(300, 320, 410, 29);
+        txtBirthDay.setBounds(240, 320, 460, 29);
 
         txtName.setPrompt("Input Name");
+        txtName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNameMouseClicked(evt);
+            }
+        });
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
             }
         });
         add(txtName);
-        txtName.setBounds(300, 80, 410, 29);
+        txtName.setBounds(240, 80, 460, 29);
 
         txtAddress.setPrompt("Input Address");
+        txtAddress.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAddressMouseClicked(evt);
+            }
+        });
+        txtAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAddressActionPerformed(evt);
+            }
+        });
         add(txtAddress);
-        txtAddress.setBounds(300, 140, 410, 29);
+        txtAddress.setBounds(240, 140, 460, 29);
 
         txtEmail.setPrompt("Input Email");
+        txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEmailMouseClicked(evt);
+            }
+        });
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
         add(txtEmail);
-        txtEmail.setBounds(300, 200, 410, 29);
+        txtEmail.setBounds(240, 200, 460, 29);
 
         txtContactNo.setPrompt("Input ContactNO");
+        txtContactNo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtContactNoMouseClicked(evt);
+            }
+        });
+        txtContactNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContactNoActionPerformed(evt);
+            }
+        });
         add(txtContactNo);
-        txtContactNo.setBounds(300, 260, 410, 29);
+        txtContactNo.setBounds(240, 260, 460, 29);
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Update.png"))); // NOI18N
         btnUpdate.setText("Update");
@@ -129,6 +195,11 @@ public class StudentForm extends javax.swing.JPanel {
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Trash.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         add(btnDelete);
         btnDelete.setBounds(790, 140, 150, 32);
 
@@ -162,8 +233,18 @@ public class StudentForm extends javax.swing.JPanel {
         jXLabel1.setBounds(20, 390, 140, 30);
 
         txtID.setPrompt("input ID");
+        txtID.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtIDMouseClicked(evt);
+            }
+        });
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
         add(txtID);
-        txtID.setBounds(300, 20, 410, 30);
+        txtID.setBounds(240, 20, 460, 30);
 
         jXLabel7.setText("Name                       :-");
         jXLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -179,6 +260,30 @@ public class StudentForm extends javax.swing.JPanel {
         });
         add(lblSearch);
         lblSearch.setBounds(720, 20, 30, 30);
+
+        spID.setBackground(new java.awt.Color(153, 153, 153));
+        add(spID);
+        spID.setBounds(240, 50, 460, 2);
+
+        spName.setBackground(new java.awt.Color(153, 153, 153));
+        add(spName);
+        spName.setBounds(240, 110, 460, 2);
+
+        spAddress.setBackground(new java.awt.Color(153, 153, 153));
+        add(spAddress);
+        spAddress.setBounds(240, 170, 460, 2);
+
+        spEmail.setBackground(new java.awt.Color(153, 153, 153));
+        add(spEmail);
+        spEmail.setBounds(240, 230, 460, 2);
+
+        spContactNo.setBackground(new java.awt.Color(153, 153, 153));
+        add(spContactNo);
+        spContactNo.setBounds(240, 290, 460, 2);
+
+        spBirthDay.setBackground(new java.awt.Color(153, 153, 153));
+        add(spBirthDay);
+        spBirthDay.setBounds(240, 350, 460, 2);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -187,35 +292,25 @@ public class StudentForm extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         
+            String ID = txtID.getText().trim();
+            String Name = txtName.getText().trim();
+            String Address = txtAddress.getText().trim();
+            String Email = txtEmail.getText().trim();
+            String ContactNo = txtContactNo.getText().trim();
+            String BirthDay = txtBirthDay.getText().trim();
         
-//        try {
-//            String Name = txtName.getText().trim();
-//            String Address = txtName.getText().trim();
-//            String Email = txtEmail.getText().trim();
-//            String ContactNo = txtContactNo.getText().trim();
-//            String BirthDay = txtBirthDay.getText().trim();
-//            
-//            StudentDTO studentDTO = new StudentDTO(0, Name, Address, Email, ContactNo, BirthDay);
-//            
-//            if (controller.save(studentDTO)) {
-//                JOptionPane.showMessageDialog(this, "Student Added Succsess Fully");
-//            }else{
-//                JOptionPane.showMessageDialog(this, "Student Added Faild Pleace Try Again");
-//            }
-//        } catch (Exception e) {
-//        }
-//        try {
-//            String cName = txtName.getText().trim();
-//            double fee =  Double.parseDouble(txtFree.getText().trim().equals("") ? "0" : txtFree.getText().trim());
-//            String duration = txtDuration.getText().trim();
-//            CourseDTO courseDTO = new CourseDTO(0,cName,fee,duration);
-//            if(controller.save(courseDTO)){
-//                JOptionPane.showMessageDialog(this,"Added");
-//            }else{
-//                JOptionPane.showMessageDialog(this, "Faild");
-//            }
-//        } catch (Exception e) {
-//        }
+            StudentDTO studentDTO = new StudentDTO(ID, Name, Address, Email, ContactNo, BirthDay);
+            
+        try {
+            boolean result = controller.save(studentDTO);
+            if (result) {
+                JOptionPane.showMessageDialog(this, "Studenr Added Succsess Fully..");
+            }else{
+                JOptionPane.showMessageDialog(this, "Student Added Faild Pleace Try Again..");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
@@ -230,6 +325,134 @@ public class StudentForm extends javax.swing.JPanel {
       txtContactNo.setText(null);
       txtBirthDay.setText(null);
     }//GEN-LAST:event_btnNewActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        
+       
+        
+        
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void txtIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIDMouseClicked
+        boolean isClicked = true;
+
+               if (isClicked) {
+                   spID.setBackground(new Color(0x58C9F7));
+                   spEmail.setBackground(new Color(153,153,153));
+                   spAddress.setBackground(new Color(153,153,153));
+                   spContactNo.setBackground(new Color(153,153,153));
+                   spBirthDay.setBackground(new Color(153,153,153));
+                   spName.setBackground(new Color(153,153,153));
+               }
+    }//GEN-LAST:event_txtIDMouseClicked
+
+    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAddressActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void txtContactNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContactNoActionPerformed
+
+    private void txtBirthDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBirthDayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBirthDayActionPerformed
+
+    private void txtNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNameMouseClicked
+       boolean isClicked = true;
+
+               if (isClicked) {
+                   spName.setBackground(new Color(0x58C9F7));
+                   spID.setBackground(new Color(153,153,153));
+                   spEmail.setBackground(new Color(153,153,153));
+                   spAddress.setBackground(new Color(153,153,153));
+                   spContactNo.setBackground(new Color(153,153,153));
+                   spBirthDay.setBackground(new Color(153,153,153));
+               }
+    }//GEN-LAST:event_txtNameMouseClicked
+
+    private void txtAddressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAddressMouseClicked
+         boolean isClicked = true;
+
+               if (isClicked) {
+                   spAddress.setBackground(new Color(0x58C9F7));
+                   spContactNo.setBackground(new Color(153,153,153));
+                   spBirthDay.setBackground(new Color(153,153,153));
+                   spID.setBackground(new Color(153,153,153));
+                   spEmail.setBackground(new Color(153,153,153));
+                   spName.setBackground(new Color(153,153,153));
+               }
+    }//GEN-LAST:event_txtAddressMouseClicked
+
+    private void txtEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailMouseClicked
+         boolean isClicked = true;
+
+               if (isClicked) {
+                   spEmail.setBackground(new Color(0x58C9F7));
+                   spAddress.setBackground(new Color(153,153,153));
+                   spContactNo.setBackground(new Color(153,153,153));
+                   spBirthDay.setBackground(new Color(153,153,153));
+                   spID.setBackground(new Color(153,153,153));
+                   spName.setBackground(new Color(153,153,153));
+               }
+    }//GEN-LAST:event_txtEmailMouseClicked
+
+    private void txtContactNoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContactNoMouseClicked
+         boolean isClicked = true;
+
+               if (isClicked) {
+                   spContactNo.setBackground(new Color(0x58C9F7));
+                   spBirthDay.setBackground(new Color(153,153,153));
+                   spID.setBackground(new Color(153,153,153));
+                   spName.setBackground(new Color(153,153,153));
+                   spEmail.setBackground(new Color(153,153,153));
+                   spAddress.setBackground(new Color(153,153,153));
+               }
+    }//GEN-LAST:event_txtContactNoMouseClicked
+
+    private void txtBirthDayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBirthDayMouseClicked
+         boolean isClicked = true;
+
+               if (isClicked) {
+                   spBirthDay.setBackground(new Color(0x58C9F7));
+                   spID.setBackground(new Color(153,153,153));
+                   spName.setBackground(new Color(153,153,153));
+                   spEmail.setBackground(new Color(153,153,153));
+                   spAddress.setBackground(new Color(153,153,153));
+                   spContactNo.setBackground(new Color(153,153,153));
+               }
+    }//GEN-LAST:event_txtBirthDayMouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        boolean isClicked = true;
+
+               if (isClicked) {
+                   spBirthDay.setBackground(new Color(153,153,153));
+                   spID.setBackground(new Color(153,153,153));
+                   spName.setBackground(new Color(153,153,153));
+                   spEmail.setBackground(new Color(153,153,153));
+                   spAddress.setBackground(new Color(153,153,153));
+                   spContactNo.setBackground(new Color(153,153,153));
+               }
+    }//GEN-LAST:event_formMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+        try {
+            boolean delete = controller.delete(txtID.getText());
+            if (delete) {
+                JOptionPane.showMessageDialog(this, "Delete Succsessfully");
+            }else{
+                JOptionPane.showMessageDialog(this, "Delete Faild Pleace Try Again");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -246,6 +469,12 @@ public class StudentForm extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXLabel jXLabel6;
     private org.jdesktop.swingx.JXLabel jXLabel7;
     private org.jdesktop.swingx.JXLabel lblSearch;
+    private org.jdesktop.swingx.JXLabel spAddress;
+    private org.jdesktop.swingx.JXLabel spBirthDay;
+    private org.jdesktop.swingx.JXLabel spContactNo;
+    private org.jdesktop.swingx.JXLabel spEmail;
+    private org.jdesktop.swingx.JXLabel spID;
+    private org.jdesktop.swingx.JXLabel spName;
     private org.jdesktop.swingx.JXTable tblStudent;
     private org.jdesktop.swingx.JXTextField txtAddress;
     private org.jdesktop.swingx.JXTextField txtBirthDay;
