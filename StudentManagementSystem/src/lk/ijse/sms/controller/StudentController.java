@@ -27,6 +27,9 @@ public class StudentController {
         return studentBO.save(studentDTO);
     }
     
+    public boolean update(StudentDTO studentDTO) throws Exception{
+        return studentBO.update(studentDTO);
+    }
     
     public boolean delete(String id)throws Exception{
         return studentBO.delete(id);

@@ -37,6 +37,10 @@ public class CourseController {
     public  CourseDTO search(String id)throws Exception{
         return courseBO.search(id);
     }
+    
+    public boolean update(CourseDTO courseDTO)throws Exception{
+        return courseBO.update(courseDTO);
+    }
 //    public boolean delete(int id)throws Exception{
 //        return courseBO.delete(id);
 //    }

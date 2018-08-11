@@ -29,6 +29,7 @@ public class AboutUs extends javax.swing.JPanel {
 
         jXLabel1 = new org.jdesktop.swingx.JXLabel();
         jXLabel2 = new org.jdesktop.swingx.JXLabel();
+        jXLabel3 = new org.jdesktop.swingx.JXLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -36,16 +37,22 @@ public class AboutUs extends javax.swing.JPanel {
         jXLabel1.setText("Devolop By :- IJSE GDSE 44 Tharaka Chandralal");
         jXLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         add(jXLabel1);
-        jXLabel1.setBounds(330, 600, 330, 30);
+        jXLabel1.setBounds(310, 600, 330, 30);
 
-        jXLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/photo-56266.gif"))); // NOI18N
+        jXLabel2.setText("Technology :- Java File Writter");
+        jXLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         add(jXLabel2);
-        jXLabel2.setBounds(320, 150, 310, 340);
+        jXLabel2.setBounds(370, 540, 210, 50);
+
+        jXLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/gif-animation.gif"))); // NOI18N
+        add(jXLabel3);
+        jXLabel3.setBounds(160, 70, 640, 450);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXLabel jXLabel1;
     private org.jdesktop.swingx.JXLabel jXLabel2;
+    private org.jdesktop.swingx.JXLabel jXLabel3;
     // End of variables declaration//GEN-END:variables
 }

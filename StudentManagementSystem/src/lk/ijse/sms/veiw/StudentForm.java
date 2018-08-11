@@ -7,9 +7,11 @@ package lk.ijse.sms.veiw;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import lk.ijse.sms.controller.StudentController;
 import lk.ijse.sms.dto.StudentDTO;
 
@@ -23,9 +25,9 @@ public class StudentForm extends javax.swing.JPanel {
      * Creates new form StudentForm
      */
     private final StudentController controller;
-    public StudentForm() throws IOException {
+    public StudentForm() throws IOException, Exception {
         initComponents();
-        
+        loardAllStudents();
         controller = new StudentController();
         
         txtID.setBorder(null);
@@ -178,6 +180,11 @@ public class StudentForm extends javax.swing.JPanel {
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Update.png"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         add(btnUpdate);
         btnUpdate.setBounds(790, 200, 150, 32);
 
@@ -305,6 +312,7 @@ public class StudentForm extends javax.swing.JPanel {
             boolean result = controller.save(studentDTO);
             if (result) {
                 JOptionPane.showMessageDialog(this, "Studenr Added Succsess Fully..");
+                loardAllStudents();
             }else{
                 JOptionPane.showMessageDialog(this, "Student Added Faild Pleace Try Again..");
             }
@@ -314,7 +322,20 @@ public class StudentForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
-        // TODO add your handling code here:
+       
+        try {
+            StudentDTO studentDTO = controller.search(txtID.getText());
+           
+            txtName.setText(studentDTO.getName());
+            txtAddress.setText(studentDTO.getAddress());
+            txtEmail.setText(studentDTO.getEmail());
+            txtContactNo.setText(studentDTO.getContatctNo());
+            txtBirthDay.setText(studentDTO.getBirthDay());
+            
+        } catch (Exception ex) {
+            Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_lblSearchMouseClicked
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -446,6 +467,7 @@ public class StudentForm extends javax.swing.JPanel {
             boolean delete = controller.delete(txtID.getText());
             if (delete) {
                 JOptionPane.showMessageDialog(this, "Delete Succsessfully");
+                loardAllStudents();
             }else{
                 JOptionPane.showMessageDialog(this, "Delete Faild Pleace Try Again");
             }
@@ -453,6 +475,30 @@ public class StudentForm extends javax.swing.JPanel {
             Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        
+        StudentDTO studentDTO = new StudentDTO();
+        studentDTO.setId(txtID.getText());
+        studentDTO.setName(txtName.getText());
+        studentDTO.setAddress(txtAddress.getText());
+        studentDTO.setEmail(txtEmail.getText());
+        studentDTO.setContatctNo(txtContactNo.getText());
+        studentDTO.setBirthDay(txtBirthDay.getText());
+        
+        
+        try {
+            boolean result = controller.update(studentDTO);
+            
+            if (result) {
+                JOptionPane.showMessageDialog(this, "Student Updated Succsessfully");
+            }else{
+                JOptionPane.showMessageDialog(this, "Student Updating Faild  Pleace Try Again");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -483,4 +529,30 @@ public class StudentForm extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXTextField txtID;
     private org.jdesktop.swingx.JXTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+public final void loardAllStudents()throws Exception{
+    
+    try {
+       DefaultTableModel dtm = (DefaultTableModel) tblStudent.getModel();
+    dtm.setRowCount(0);
+    
+    List<StudentDTO>studentDTOs;
+    
+    studentDTOs = controller.getAllStudent();
+    
+    for (StudentDTO studentDTO : studentDTOs) {
+        Object[] objects = {studentDTO.getId(),
+            studentDTO.getName(),
+            studentDTO.getAddress(),
+            studentDTO.getEmail(),
+            studentDTO.getContatctNo(),
+            studentDTO.getBirthDay()};
+        
+        dtm.addRow(objects);
+    } 
+    } catch (Exception e) {
+    }
+    
+    
+}
 }

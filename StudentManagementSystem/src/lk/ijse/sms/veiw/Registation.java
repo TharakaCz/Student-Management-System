@@ -6,6 +6,8 @@
 package lk.ijse.sms.veiw;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -18,12 +20,17 @@ public class Registation extends javax.swing.JPanel {
      */
     public Registation() {
         initComponents();
-        
+        ShowDate();
         txtRegistationID.setBorder(null);
         txtFee.setBorder(null);
         txtDate.setBorder(null);
     }
 
+    void ShowDate(){
+        Date date = new Date();
+        SimpleDateFormat s = new SimpleDateFormat("YYYY-MM-DD");
+        txtDate.setText(s.format(date));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
