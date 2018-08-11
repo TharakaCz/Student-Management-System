@@ -5,10 +5,19 @@
  */
 package lk.ijse.sms.bo;
 
+import lk.ijse.sms.dao.RegistationDAO;
+import lk.ijse.sms.dto.RegistationDTO;
+
 /**
  *
  * @author User
  */
 public class RegistationBO {
     
+    private RegistationDAO registationDAO;
+    
+    
+    public  boolean save(RegistationDTO registationDTO) throws Exception{
+        return registationDAO.save(registationDTO);
+    }
 }

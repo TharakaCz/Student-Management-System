@@ -5,8 +5,10 @@
  */
 package lk.ijse.sms.dao;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +24,32 @@ public class RegistationDAO {
     private final File file = new File("E:/Sms Data/registation.txt");
     
     
-    public boolean writeFile(List<RegistationDTO>registationDTOs)throws Exception{
+    public boolean save(RegistationDTO registationDTO) throws Exception {
         
-        try( FileOutputStream fileOutputStream = new FileOutputStream(file); ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);){
-            objectOutputStream.writeObject(registationDTOs);
-            return true;
-        
-        }    
-    }
+        if (!file.exists()) {
+            boolean createNewFile = file.createNewFile();
+        }
     
-    public boolean save(RegistationDTO registationDTO)throws Exception{
-        List<RegistationDTO>registationDTOs = new ArrayList<>();
-        registationDTOs.add(registationDTO);
-        return writeFile(registationDTOs);
+        String data = "";
+        data += registationDTO.getRid()+ " ";
+        data += registationDTO.getSid()+ " ";
+        data += registationDTO.getCid()+ " ";
+        data += registationDTO.getFee()+ " ";
+        data += registationDTO.getDate();
+        
+        BufferedWriter bufferedWriter = null;
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+            bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(data);
+            bufferedWriter.newLine();
+            return true;
+        } finally {
+            if (bufferedWriter != null) {
+                bufferedWriter.close();
+            }
+        
+        }
+    
     }
 }

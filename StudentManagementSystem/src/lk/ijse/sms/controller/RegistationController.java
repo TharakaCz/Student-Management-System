@@ -5,10 +5,18 @@
  */
 package lk.ijse.sms.controller;
 
+import lk.ijse.sms.bo.RegistationBO;
+import lk.ijse.sms.dto.RegistationDTO;
+
 /**
  *
  * @author User
  */
 public class RegistationController {
     
+    private  RegistationBO registationBO;
+    
+    public boolean save(RegistationDTO registationDTO)throws Exception{
+        return registationBO.save(registationDTO);
+    }
 }
