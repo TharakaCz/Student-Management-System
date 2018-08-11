@@ -6,6 +6,7 @@
 package lk.ijse.sms.controller;
 
 import java.io.IOException;
+import java.util.List;
 import lk.ijse.sms.bo.CourseBO;
 import lk.ijse.sms.dto.CourseDTO;
 
@@ -17,7 +18,7 @@ public class CourseController {
     
     private final CourseBO courseBO;
 
-    public CourseController() throws IOException {
+    public CourseController() throws IOException{
         courseBO = new CourseBO();
     }
     
@@ -25,6 +26,17 @@ public class CourseController {
         return courseBO.save(courseDTO);
     }
     
+    public boolean delete(String id)throws Exception{
+        return courseBO.delete(id);
+    }
+    
+    public List<CourseDTO>getAllCourse()throws Exception{
+        return courseBO.getAllCource();
+    }
+    
+    public  CourseDTO search(String id)throws Exception{
+        return courseBO.search(id);
+    }
 //    public boolean delete(int id)throws Exception{
 //        return courseBO.delete(id);
 //    }

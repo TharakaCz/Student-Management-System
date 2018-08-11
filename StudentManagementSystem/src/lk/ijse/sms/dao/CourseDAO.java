@@ -166,6 +166,12 @@ public List<CourseDTO> getAllCourse()throws Exception{
        
     }
 
+    public boolean Update(String id)throws Exception{
+        
+        
+        return false;
+        
+    }
     private boolean isExist(String id) throws Exception{
         
         CourseDTO courseDTO = search(id);
