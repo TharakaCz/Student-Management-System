@@ -10,10 +10,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 import lk.ijse.sms.dto.StudentDTO;
 
 /**
@@ -23,139 +21,168 @@ import lk.ijse.sms.dto.StudentDTO;
 public class StudentDAO {
     
     private final File file = new File("E:/Sms Data/student.txt");
-    private static ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     
     
-    private FileWriter fileWriter;
-    private FileReader fileReader;
+   public boolean save(StudentDTO studentDTO) throws Exception {
+        
+        if (!file.exists()) {
+            boolean createNewFile = file.createNewFile();
+        }
+        //rwLock.writeLock().lock();
+        String data = "";
+        data += studentDTO.getId() + " ";
+        data += studentDTO.getName() + " ";
+        data += studentDTO.getAddress() + " ";
+        data += studentDTO.getEmail() + " ";
+        data += studentDTO.getContatctNo() + " ";
+        data += studentDTO.getBirthDay();
+        BufferedWriter bufferedWriter = null;
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+            bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(data);
+            bufferedWriter.newLine();
+            return true;
+        } finally {
+            if (bufferedWriter != null) {
+                bufferedWriter.close();
+            }
+         //   rwLock.writeLock().unlock();
+        }
     
-    private BufferedWriter bufferedWriter;
-    private BufferedReader bufferedReader;
-    
- 
-    
-   public StudentDAO() throws IOException {
-       fileWriter = new FileWriter(file,true);
-       fileReader = new FileReader(file);
-       
-       bufferedWriter = new BufferedWriter(fileWriter);
-       bufferedReader = new BufferedReader(fileReader);
-       
     }
-   
-   
-   public  boolean save(StudentDTO studentDTO)throws Exception{
-       
-       if (!file.exists()) {
-           boolean add = file.createNewFile();
-       }
-       
-       String data = "";
-       data += studentDTO.getId() + " ";
-       data += studentDTO.getName() + " ";
-       data += studentDTO.getAddress() + " ";
-       data += studentDTO.getEmail() + " ";
-       data += studentDTO.getContatctNo() + " ";
-       data += studentDTO.getBirthDay();
-       
-       try {
-           
-           bufferedWriter.write(data);
-           bufferedWriter.newLine();
-           return true;
-       } finally {
-           
-           if (bufferedWriter != null) {
-               bufferedWriter.close();
-               
-           }
-       }
-      
-   }
-   
-   public boolean delete(String id)throws Exception{
-   
-       try {
-           List<String>list = new ArrayList<>();
-           String line = null;
-           
-           while ((line = bufferedReader.readLine()) !=null) {               
-               String[] data = line.split(" ");
-               if (!data[0].equals(id)) {
-                   list.add(line);
-               }
-           }
-           
-           for (String string: list) {
-               bufferedWriter.write(string);
-               bufferedWriter.newLine();
-           }
-           return isExist(id);
-       } finally {
-           if (bufferedReader != null) {
-               bufferedReader.close();
-           }if (bufferedWriter !=null) {
-               bufferedWriter.close();
-           }
-       }
-   }
-   
-   public StudentDTO search(String id)throws Exception{
-       
-       StudentDTO studentDTO = null;
-       try {
-           String line = null;
-           
-           while ((line = bufferedReader.readLine()) != null) {               
-               String[] data = line.split(" ");
-               if (data[0].equals(id)) {
-                   studentDTO = new StudentDTO();
-                   studentDTO.setId(data[0]);
-                   studentDTO.setName(data[1]);
-                   studentDTO.setAddress(data[2]);
-                   studentDTO.setEmail(data[3]);
-                   studentDTO.setContatctNo(data[4]);
-                   studentDTO.setBirthDay(data[5]);
-               }
-           }
-           return studentDTO;
-       } finally{
-           if (bufferedReader !=null) {
-               bufferedReader.close();
-           }
-       }
-   }
-   
-   public  List<StudentDTO>getAllStudent()throws Exception{
-       List<StudentDTO>studentDTOs = new ArrayList<>();
-       StudentDTO studentDTO = null;
-       try {
-           String line =null;
-           
-           while ((line = bufferedReader.readLine()) != null) {               
-               String[] data = line.split(" ");
-               studentDTO = new StudentDTO();
-               studentDTO.setId(data[0]);
-               studentDTO.setName(data[1]);
-               studentDTO.setAddress(data[2]);
-               studentDTO.setEmail(data[3]);
-               studentDTO.setContatctNo(data[4]);
-               studentDTO.setBirthDay(data[5]);
-               
-               studentDTOs.add(studentDTO);
-               
-           }
-           return studentDTOs;
-       } finally {
-           if (bufferedReader !=null) {
-               bufferedReader.close();
-           }
-       }
-   }
 
-    private boolean isExist(String id) throws Exception {
-       StudentDTO studentDTO = search(id);
-       return studentDTO == null;
+   public  boolean update(StudentDTO studentDTO)throws Exception{
+   
+       String data = "";
+        data += studentDTO.getId() + " ";
+        data += studentDTO.getName() + " ";
+        data += studentDTO.getAddress() + " ";
+        data += studentDTO.getEmail() + " ";
+        data += studentDTO.getContatctNo() + " ";
+        data += studentDTO.getBirthDay();
+        BufferedWriter bufferedWriter = null;
+        
+        try {
+            FileWriter fileWriter = new FileWriter(file, true);
+            bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(data);
+            return true;
+       } finally {
+            
+            if (bufferedWriter != null) {
+              
+                bufferedWriter.close();
+            }
+       }
+        
+   }
+   
+   
+   public  List<StudentDTO> getAllStudent() throws Exception{
+        BufferedReader reader = null;
+        List<StudentDTO> studentDTOs = new ArrayList<>();
+        try {
+            
+            FileReader fileReader = new FileReader(file);
+            reader = new BufferedReader(fileReader);
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(" ");
+                StudentDTO studentDTO = new StudentDTO();
+                studentDTO.setId(data[0]);
+                studentDTO.setName(data[1]);
+                studentDTO.setAddress(data[2]);
+                studentDTO.setEmail(data[3]);
+                studentDTO.setContatctNo(data[4]);
+                studentDTO.setBirthDay(data[5]);
+
+                studentDTOs.add(studentDTO);
+                System.out.println(studentDTO);
+            }
+            return studentDTOs;
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
+           
+        }
     }
+   
+   
+
+    public  boolean delete(String id) throws Exception{
+        BufferedReader reader = null;
+        BufferedWriter writer = null;
+        try {
+            
+            FileReader fileReader = new FileReader(file);
+            reader = new BufferedReader(fileReader);
+            List<String> fileData = new ArrayList<>();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(" ");
+                if (!data[0].equals(id)) {
+                    fileData.add(line);
+                }
+            }
+
+            FileWriter fileWriter = new FileWriter(file);
+            writer = new BufferedWriter(fileWriter);
+            for (String lineData : fileData) {
+                writer.write(lineData);
+                writer.newLine();
+            }
+            return isStudent(id);
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
+            if (writer != null) {
+                writer.close();
+            }
+           
+        }
+    }
+
     
+    
+
+    public  StudentDTO search(String id) throws Exception {
+        BufferedReader reader = null;
+        StudentDTO studentDTO = null;
+        try {
+
+            
+            FileReader fileReader = new FileReader(file);
+            reader = new BufferedReader(fileReader);
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(" ");
+                if (data[0].equals(id)) {
+                studentDTO = new StudentDTO();
+                studentDTO.setId(data[0]);
+                studentDTO.setName(data[1]);
+                studentDTO.setAddress(data[2]);
+                studentDTO.setEmail(data[3]);
+                studentDTO.setContatctNo(data[4]);
+                studentDTO.setBirthDay(data[5]);
+
+                }
+            }
+            return studentDTO;
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
+            
+        }
+    }
+
+    
+
+    private boolean isStudent(String id) throws Exception{
+       StudentDTO studentDTO = search(id);
+        return studentDTO == null;
+    }
 }

@@ -28,6 +28,9 @@ public class StudentBO {
         return  studentDAO.save(studentDTO);
     }
     
+    public  boolean update(StudentDTO studentDTO) throws Exception{
+        return studentDAO.update(studentDTO);
+    }
     public boolean delete(String id)throws Exception{
         return studentDAO.delete(id);
     }

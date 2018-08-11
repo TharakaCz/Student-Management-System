@@ -259,7 +259,7 @@ public class CourseForm extends javax.swing.JPanel {
             
             if (delete) {
                 JOptionPane.showMessageDialog(this, "Deleted");
-//                loardAllCourse();
+                loardAllCourse();
             }else{
                 JOptionPane.showMessageDialog(this, "Fild");
             }
@@ -268,7 +268,27 @@ public class CourseForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-       
+        
+        try {
+            CourseDTO courseDTO = new CourseDTO();
+            courseDTO.setId(txtID.getText());
+            courseDTO.setcName(txtName.getText());
+            courseDTO.setFee(txtFree.getText());
+            courseDTO.setcDuration(txtDuration.getText());
+            
+            boolean result = controller.update(courseDTO);
+            
+            if (result) {
+                JOptionPane.showMessageDialog(this, "Course Succsessfully Updated");
+            }else{
+                JOptionPane.showMessageDialog(this, "Course Update Faild Pleace Try Again");
+            }
+            
+
+        } catch (Exception ex) {
+            Logger.getLogger(CourseForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btntNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntNewActionPerformed
@@ -281,7 +301,10 @@ public class CourseForm extends javax.swing.JPanel {
     private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
         
         try {
-            CourseDTO search = controller.search(txtID.getText());
+            CourseDTO courseDTO = controller.search(txtID.getText());
+            txtName.setText(courseDTO.getcName());
+            txtFree.setText(courseDTO.getFee());
+            txtDuration.setText(courseDTO.getcDuration());
             
         } catch (Exception ex) {
             Logger.getLogger(CourseForm.class.getName()).log(Level.SEVERE, null, ex);

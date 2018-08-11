@@ -7,10 +7,15 @@
 package lk.ijse.sms.veiw;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.Timer;
 
 /**
  *
@@ -25,7 +30,8 @@ public class Main extends javax.swing.JFrame {
         
          setSize(1200, 780);
          setLocationRelativeTo(null);
-        
+        ShowDate();
+        ShowTime();
 
         lblDashboard.setBackground(new  Color(0xEDE89F));
 
@@ -39,8 +45,7 @@ public class Main extends javax.swing.JFrame {
         pnlMain.repaint();
         
          //Labels
-         lblPreview.setVisible(false);
-         lblfowerd.setVisible(false);
+        
          lblTitle.setText("Welcome Student Management System");
          setTitle("Student Management System");
          ImageIcon icon = new ImageIcon(this.getClass().getResource("/assest/Graduation.png"));
@@ -48,6 +53,23 @@ public class Main extends javax.swing.JFrame {
          this.setIconImage(icon.getImage());
     }
 
+    void ShowDate(){
+        Date date = new Date();
+        SimpleDateFormat s = new SimpleDateFormat("YYYY-MM-DD");
+        lblDate.setText(s.format(date));
+    }
+    void ShowTime(){
+        new Timer(0, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date date = new Date();
+                SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
+                lblClock.setText(s.format(date));
+            }
+        }).start();
+    
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -60,8 +82,10 @@ public class Main extends javax.swing.JFrame {
         pnlMain = new org.jdesktop.swingx.JXPanel();
         jXPanel2 = new org.jdesktop.swingx.JXPanel();
         lblTitle = new org.jdesktop.swingx.JXLabel();
-        lblPreview = new org.jdesktop.swingx.JXLabel();
-        lblfowerd = new org.jdesktop.swingx.JXLabel();
+        jXLabel9 = new org.jdesktop.swingx.JXLabel();
+        jXLabel10 = new org.jdesktop.swingx.JXLabel();
+        lblDate = new org.jdesktop.swingx.JXLabel();
+        lblClock = new org.jdesktop.swingx.JXLabel();
         jXPanel1 = new org.jdesktop.swingx.JXPanel();
         jXLabel5 = new org.jdesktop.swingx.JXLabel();
         lblExit = new org.jdesktop.swingx.JXLabel();
@@ -75,6 +99,8 @@ public class Main extends javax.swing.JFrame {
         lblAboutUs = new org.jdesktop.swingx.JXLabel();
         jXLabel7 = new org.jdesktop.swingx.JXLabel();
         lblDashboard = new org.jdesktop.swingx.JXLabel();
+        jXLabel8 = new org.jdesktop.swingx.JXLabel();
+        jXLabel6 = new org.jdesktop.swingx.JXLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -90,17 +116,23 @@ public class Main extends javax.swing.JFrame {
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jXPanel2.add(lblTitle);
-        lblTitle.setBounds(270, 10, 360, 40);
+        lblTitle.setBounds(300, 10, 330, 40);
 
-        lblPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Right Button.png"))); // NOI18N
-        lblPreview.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jXPanel2.add(lblPreview);
-        lblPreview.setBounds(900, 10, 40, 40);
+        jXLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Calendar.png"))); // NOI18N
+        jXPanel2.add(jXLabel9);
+        jXLabel9.setBounds(30, 10, 40, 40);
 
-        lblfowerd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Prev.png"))); // NOI18N
-        lblfowerd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jXPanel2.add(lblfowerd);
-        lblfowerd.setBounds(20, 10, 40, 40);
+        jXLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Clock.png"))); // NOI18N
+        jXPanel2.add(jXLabel10);
+        jXLabel10.setBounds(760, 10, 40, 40);
+
+        lblDate.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        jXPanel2.add(lblDate);
+        lblDate.setBounds(80, 10, 130, 40);
+
+        lblClock.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
+        jXPanel2.add(lblClock);
+        lblClock.setBounds(810, 10, 130, 40);
 
         getContentPane().add(jXPanel2);
         jXPanel2.setBounds(230, 0, 960, 60);
@@ -111,7 +143,7 @@ public class Main extends javax.swing.JFrame {
 
         jXLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Exit.png"))); // NOI18N
         jXPanel1.add(jXLabel5);
-        jXLabel5.setBounds(30, 580, 50, 60);
+        jXLabel5.setBounds(30, 640, 50, 60);
 
         lblExit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblExit.setText("                       Exit");
@@ -122,11 +154,11 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jXPanel1.add(lblExit);
-        lblExit.setBounds(10, 580, 210, 60);
+        lblExit.setBounds(10, 640, 210, 60);
 
         jXLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Student.png"))); // NOI18N
         jXPanel1.add(jXLabel1);
-        jXLabel1.setBounds(30, 220, 60, 60);
+        jXLabel1.setBounds(30, 280, 60, 60);
 
         lblStudent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblStudent.setText("                     Manage Student");
@@ -137,11 +169,11 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jXPanel1.add(lblStudent);
-        lblStudent.setBounds(10, 220, 210, 60);
+        lblStudent.setBounds(10, 280, 210, 60);
 
         jXLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Reading.png"))); // NOI18N
         jXPanel1.add(jXLabel2);
-        jXLabel2.setBounds(30, 310, 50, 60);
+        jXLabel2.setBounds(30, 370, 50, 60);
 
         lblCourse.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblCourse.setText("                     Manage Course");
@@ -152,11 +184,11 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jXPanel1.add(lblCourse);
-        lblCourse.setBounds(10, 310, 210, 60);
+        lblCourse.setBounds(10, 370, 210, 60);
 
         jXLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Registration.png"))); // NOI18N
         jXPanel1.add(jXLabel3);
-        jXLabel3.setBounds(30, 400, 50, 60);
+        jXLabel3.setBounds(30, 460, 50, 60);
 
         lblRegistation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblRegistation.setText("                      Registation");
@@ -167,11 +199,11 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jXPanel1.add(lblRegistation);
-        lblRegistation.setBounds(10, 400, 210, 60);
+        lblRegistation.setBounds(10, 460, 210, 60);
 
         jXLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Services.png"))); // NOI18N
         jXPanel1.add(jXLabel4);
-        jXLabel4.setBounds(30, 490, 50, 60);
+        jXLabel4.setBounds(30, 550, 50, 60);
 
         lblAboutUs.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblAboutUs.setText("                       About Us");
@@ -182,11 +214,11 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jXPanel1.add(lblAboutUs);
-        lblAboutUs.setBounds(10, 490, 210, 60);
+        lblAboutUs.setBounds(10, 550, 210, 60);
 
         jXLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Dashboard.png"))); // NOI18N
         jXPanel1.add(jXLabel7);
-        jXLabel7.setBounds(30, 130, 50, 60);
+        jXLabel7.setBounds(30, 190, 50, 60);
 
         lblDashboard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblDashboard.setText("                     DashBoard");
@@ -197,7 +229,16 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jXPanel1.add(lblDashboard);
-        lblDashboard.setBounds(10, 130, 210, 60);
+        lblDashboard.setBounds(10, 190, 210, 60);
+
+        jXLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/girl-graduate-silhouette-1~1.png"))); // NOI18N
+        jXPanel1.add(jXLabel8);
+        jXLabel8.setBounds(70, 10, 70, 120);
+
+        jXLabel6.setText("Student Manage Ment System");
+        jXLabel6.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 14)); // NOI18N
+        jXPanel1.add(jXLabel6);
+        jXLabel6.setBounds(10, 130, 220, 20);
 
         getContentPane().add(jXPanel1);
         jXPanel1.setBounds(0, 0, 230, 740);
@@ -212,7 +253,7 @@ public class Main extends javax.swing.JFrame {
         if (isCliked) {
             
             lblTitle.setText("Manage Student");
-            lblfowerd.setVisible(true);
+            
             lblCourse.setBackground(new Color(0xFFFFFF));
             lblStudent.setBackground(new Color(0xEDE89F));
             lblAboutUs.setBackground(new  Color(0xFFFFFF));
@@ -227,6 +268,8 @@ public class Main extends javax.swing.JFrame {
         try {
             forme = new StudentForm();
         } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         pnlMain.removeAll();
@@ -243,7 +286,7 @@ public class Main extends javax.swing.JFrame {
             
             if (isClicked) {
                 lblTitle.setText("Manage Course");
-                lblfowerd.setVisible(true);
+              
                 lblCourse.setBackground(new Color(0xEDE89F));
                 lblStudent.setBackground(new Color(0xFFFFFF));
                 lblAboutUs.setBackground(new  Color(0xFFFFFF));
@@ -383,23 +426,28 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXLabel jXLabel1;
+    private org.jdesktop.swingx.JXLabel jXLabel10;
     private org.jdesktop.swingx.JXLabel jXLabel2;
     private org.jdesktop.swingx.JXLabel jXLabel3;
     private org.jdesktop.swingx.JXLabel jXLabel4;
     private org.jdesktop.swingx.JXLabel jXLabel5;
+    private org.jdesktop.swingx.JXLabel jXLabel6;
     private org.jdesktop.swingx.JXLabel jXLabel7;
+    private org.jdesktop.swingx.JXLabel jXLabel8;
+    private org.jdesktop.swingx.JXLabel jXLabel9;
     private org.jdesktop.swingx.JXPanel jXPanel1;
     private org.jdesktop.swingx.JXPanel jXPanel2;
     private org.jdesktop.swingx.JXLabel lblAboutUs;
+    private org.jdesktop.swingx.JXLabel lblClock;
     private org.jdesktop.swingx.JXLabel lblCourse;
     private org.jdesktop.swingx.JXLabel lblDashboard;
+    private org.jdesktop.swingx.JXLabel lblDate;
     private org.jdesktop.swingx.JXLabel lblExit;
-    private org.jdesktop.swingx.JXLabel lblPreview;
     private org.jdesktop.swingx.JXLabel lblRegistation;
     private org.jdesktop.swingx.JXLabel lblStudent;
     private org.jdesktop.swingx.JXLabel lblTitle;
-    private org.jdesktop.swingx.JXLabel lblfowerd;
     private org.jdesktop.swingx.JXPanel pnlMain;
     // End of variables declaration//GEN-END:variables
 
+    
 }

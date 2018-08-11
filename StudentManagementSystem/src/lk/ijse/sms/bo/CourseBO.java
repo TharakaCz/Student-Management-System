@@ -39,7 +39,12 @@ public CourseDTO search(String id)throws Exception{
 }
 
 public List<CourseDTO>getAllCource()throws Exception{
-    return courseDAO.getAllCourse();
+    return courseDAO.getAllCource();
+    
+}
+
+public  boolean update(CourseDTO courseDTO)throws Exception{
+    return courseDAO.update(courseDTO);
 }
 //public boolean delete(int id)throws Exception{
 //    
