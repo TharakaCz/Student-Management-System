@@ -54,6 +54,7 @@ public class StudentForm extends javax.swing.JPanel {
         jXLabel1 = new org.jdesktop.swingx.JXLabel();
         txtID = new org.jdesktop.swingx.JXTextField();
         jXLabel7 = new org.jdesktop.swingx.JXLabel();
+        lblSearch = new org.jdesktop.swingx.JXLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -82,9 +83,12 @@ public class StudentForm extends javax.swing.JPanel {
         jXLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         add(jXLabel6);
         jXLabel6.setBounds(70, 260, 176, 32);
+
+        txtBirthDay.setPrompt("input Bitth Day");
         add(txtBirthDay);
         txtBirthDay.setBounds(300, 320, 410, 29);
 
+        txtName.setPrompt("Input Name");
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
@@ -92,10 +96,16 @@ public class StudentForm extends javax.swing.JPanel {
         });
         add(txtName);
         txtName.setBounds(300, 80, 410, 29);
+
+        txtAddress.setPrompt("Input Address");
         add(txtAddress);
         txtAddress.setBounds(300, 140, 410, 29);
+
+        txtEmail.setPrompt("Input Email");
         add(txtEmail);
         txtEmail.setBounds(300, 200, 410, 29);
+
+        txtContactNo.setPrompt("Input ContactNO");
         add(txtContactNo);
         txtContactNo.setBounds(300, 260, 410, 29);
 
@@ -125,6 +135,11 @@ public class StudentForm extends javax.swing.JPanel {
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/New.png"))); // NOI18N
         btnNew.setText("ADD NEW");
         btnNew.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
         add(btnNew);
         btnNew.setBounds(790, 20, 150, 32);
 
@@ -146,7 +161,7 @@ public class StudentForm extends javax.swing.JPanel {
         add(jXLabel1);
         jXLabel1.setBounds(20, 390, 140, 30);
 
-        txtID.setText("jXTextField1");
+        txtID.setPrompt("input ID");
         add(txtID);
         txtID.setBounds(300, 20, 410, 30);
 
@@ -154,6 +169,16 @@ public class StudentForm extends javax.swing.JPanel {
         jXLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         add(jXLabel7);
         jXLabel7.setBounds(70, 80, 176, 28);
+
+        lblSearch.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lblSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assest/Search.png"))); // NOI18N
+        lblSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSearchMouseClicked(evt);
+            }
+        });
+        add(lblSearch);
+        lblSearch.setBounds(720, 20, 30, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -193,6 +218,19 @@ public class StudentForm extends javax.swing.JPanel {
 //        }
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblSearchMouseClicked
+
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+      txtID.setText(null);
+      txtName.setText(null);
+      txtAddress.setText(null);
+      txtEmail.setText(null);
+      txtContactNo.setText(null);
+      txtBirthDay.setText(null);
+    }//GEN-LAST:event_btnNewActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXButton btnAdd;
@@ -207,6 +245,7 @@ public class StudentForm extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXLabel jXLabel5;
     private org.jdesktop.swingx.JXLabel jXLabel6;
     private org.jdesktop.swingx.JXLabel jXLabel7;
+    private org.jdesktop.swingx.JXLabel lblSearch;
     private org.jdesktop.swingx.JXTable tblStudent;
     private org.jdesktop.swingx.JXTextField txtAddress;
     private org.jdesktop.swingx.JXTextField txtBirthDay;

@@ -63,6 +63,9 @@
       </Constraints>
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtName">
+      <Properties>
+        <Property name="prompt" type="java.lang.String" value="Input Course Name"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="290" y="140" width="411" height="28"/>
@@ -70,6 +73,9 @@
       </Constraints>
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtDuration">
+      <Properties>
+        <Property name="prompt" type="java.lang.String" value="Input Course Duration"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="290" y="250" width="411" height="28"/>
@@ -77,6 +83,9 @@
       </Constraints>
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtFree">
+      <Properties>
+        <Property name="prompt" type="java.lang.String" value="Input Course Fee"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="290" y="190" width="411" height="28"/>
@@ -98,7 +107,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="780" y="90" width="138" height="36"/>
+          <AbsoluteConstraints x="780" y="80" width="138" height="36"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -140,7 +149,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="org.jdesktop.swingx.JXButton" name="jXButton1">
+    <Component class="org.jdesktop.swingx.JXButton" name="txtNew">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/assest/New.png"/>
@@ -150,9 +159,12 @@
           <Font name="Tahoma" size="11" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNewActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="780" y="40" width="138" height="34"/>
+          <AbsoluteConstraints x="780" y="20" width="138" height="34"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -168,7 +180,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="org.jdesktop.swingx.JXTable" name="jXTable1">
+        <Component class="org.jdesktop.swingx.JXTable" name="tblCourse">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
@@ -236,9 +248,29 @@
       </Constraints>
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtID">
+      <Properties>
+        <Property name="prompt" type="java.lang.String" value="Input ID"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="290" y="80" width="410" height="30"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="org.jdesktop.swingx.JXLabel" name="lblSearch">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/assest/Search.png"/>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="710" y="80" width="30" height="30"/>
         </Constraint>
       </Constraints>
     </Component>

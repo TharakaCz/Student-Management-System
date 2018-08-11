@@ -7,6 +7,9 @@
 package lk.ijse.sms.veiw;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -171,7 +174,12 @@ public class Main extends javax.swing.JFrame {
             lblTitle.setText("");
         }
         
-        StudentForm forme = new StudentForm();
+        StudentForm forme = null;
+        try {
+            forme = new StudentForm();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
         pnlMain.removeAll();
         forme.setSize(pnlMain.getSize());
         pnlMain.add(forme);
@@ -193,7 +201,8 @@ public class Main extends javax.swing.JFrame {
             
         }
         
-        CourseForm forme = new CourseForm();
+        CourseForm forme = null;
+        forme = new CourseForm();
         pnlMain.removeAll();
         forme.setSize(pnlMain.getSize());
         pnlMain.add(forme);
