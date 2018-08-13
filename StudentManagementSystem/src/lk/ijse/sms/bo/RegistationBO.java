@@ -14,10 +14,18 @@ import lk.ijse.sms.dto.RegistationDTO;
  */
 public class RegistationBO {
     
-    private RegistationDAO registationDAO;
+    private final RegistationDAO registationDAO;
+
+    public RegistationBO() {
+        this.registationDAO = new RegistationDAO();
+    }
+    
+    
     
     
     public  boolean save(RegistationDTO registationDTO) throws Exception{
+        System.out.println("dfdcc");
         return registationDAO.save(registationDTO);
+        
     }
 }

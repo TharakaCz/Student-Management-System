@@ -92,6 +92,7 @@ public class CourseForm extends javax.swing.JPanel {
         add(jXLabel5);
         jXLabel5.setBounds(130, 180, 119, 36);
 
+        txtName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtName.setPrompt("Input Course Name");
         txtName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -101,6 +102,7 @@ public class CourseForm extends javax.swing.JPanel {
         add(txtName);
         txtName.setBounds(290, 130, 411, 28);
 
+        txtDuration.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtDuration.setPrompt("Input Course Duration");
         txtDuration.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -115,6 +117,7 @@ public class CourseForm extends javax.swing.JPanel {
         add(txtDuration);
         txtDuration.setBounds(290, 230, 411, 28);
 
+        txtFree.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtFree.setPrompt("Input Course Fee");
         txtFree.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -191,6 +194,7 @@ public class CourseForm extends javax.swing.JPanel {
         add(jXLabel6);
         jXLabel6.setBounds(130, 130, 119, 36);
 
+        txtID.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtID.setPrompt("Input ID");
         txtID.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

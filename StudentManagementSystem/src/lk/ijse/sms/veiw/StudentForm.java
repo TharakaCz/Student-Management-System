@@ -107,6 +107,7 @@ public class StudentForm extends javax.swing.JPanel {
         add(jXLabel6);
         jXLabel6.setBounds(70, 260, 176, 32);
 
+        txtBirthDay.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtBirthDay.setPrompt("input Bitth Day");
         txtBirthDay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,6 +122,7 @@ public class StudentForm extends javax.swing.JPanel {
         add(txtBirthDay);
         txtBirthDay.setBounds(240, 320, 460, 29);
 
+        txtName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtName.setPrompt("Input Name");
         txtName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -135,6 +137,7 @@ public class StudentForm extends javax.swing.JPanel {
         add(txtName);
         txtName.setBounds(240, 80, 460, 29);
 
+        txtAddress.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtAddress.setPrompt("Input Address");
         txtAddress.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -149,6 +152,7 @@ public class StudentForm extends javax.swing.JPanel {
         add(txtAddress);
         txtAddress.setBounds(240, 140, 460, 29);
 
+        txtEmail.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtEmail.setPrompt("Input Email");
         txtEmail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -163,6 +167,7 @@ public class StudentForm extends javax.swing.JPanel {
         add(txtEmail);
         txtEmail.setBounds(240, 200, 460, 29);
 
+        txtContactNo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtContactNo.setPrompt("Input ContactNO");
         txtContactNo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -239,6 +244,7 @@ public class StudentForm extends javax.swing.JPanel {
         add(jXLabel1);
         jXLabel1.setBounds(20, 390, 140, 30);
 
+        txtID.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtID.setPrompt("input ID");
         txtID.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

@@ -313,23 +313,27 @@ public class Main extends javax.swing.JFrame {
 
     private void lblRegistationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRegistationMouseClicked
            
-        boolean isClicked = true;
-        
-        if (isClicked) {
-             lblRegistation.setBackground(new Color(0xEDE89F));
-              lblCourse.setBackground(new Color(0xFFFFFF));
+        try {
+            boolean isClicked = true;
+            
+            if (isClicked) {
+                lblRegistation.setBackground(new Color(0xEDE89F));
+                lblCourse.setBackground(new Color(0xFFFFFF));
                 lblStudent.setBackground(new Color(0xFFFFFF));
                 lblAboutUs.setBackground(new  Color(0xFFFFFF));
                 lblDashboard.setBackground(new  Color(0xFFFFFF));
                 lblExit.setBackground(new  Color(0xFFFFFF));
-        }
-        
+            }
+            
             Registation forme = new Registation();
             pnlMain.removeAll();
             forme.setSize(pnlMain.getSize());
             pnlMain.add(forme);
             pnlMain.revalidate();
             pnlMain.repaint();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_lblRegistationMouseClicked
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked

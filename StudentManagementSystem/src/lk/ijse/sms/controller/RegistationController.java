@@ -5,6 +5,7 @@
  */
 package lk.ijse.sms.controller;
 
+import java.io.IOException;
 import lk.ijse.sms.bo.RegistationBO;
 import lk.ijse.sms.dto.RegistationDTO;
 
@@ -14,9 +15,16 @@ import lk.ijse.sms.dto.RegistationDTO;
  */
 public class RegistationController {
     
-    private  RegistationBO registationBO;
+    private final RegistationBO registationBO;
+
+    public RegistationController() throws IOException,NullPointerException{
+        this.registationBO = new RegistationBO();
+    }
+
+    
     
     public boolean save(RegistationDTO registationDTO)throws Exception{
+        System.out.println("dfdcc");
         return registationBO.save(registationDTO);
     }
 }
