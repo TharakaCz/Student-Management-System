@@ -67,6 +67,9 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtName">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="prompt" type="java.lang.String" value="Input Course Name"/>
       </Properties>
       <Events>
@@ -80,6 +83,9 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtDuration">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="prompt" type="java.lang.String" value="Input Course Duration"/>
       </Properties>
       <Events>
@@ -94,6 +100,9 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtFree">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="prompt" type="java.lang.String" value="Input Course Fee"/>
       </Properties>
       <Events>
@@ -262,6 +271,9 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtID">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="prompt" type="java.lang.String" value="Input ID"/>
       </Properties>
       <Events>

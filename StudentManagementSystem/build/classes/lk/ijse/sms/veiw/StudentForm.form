@@ -93,6 +93,9 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtBirthDay">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="prompt" type="java.lang.String" value="input Bitth Day"/>
       </Properties>
       <Events>
@@ -107,6 +110,9 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtName">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="prompt" type="java.lang.String" value="Input Name"/>
       </Properties>
       <Events>
@@ -121,6 +127,9 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtAddress">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="prompt" type="java.lang.String" value="Input Address"/>
       </Properties>
       <Events>
@@ -135,6 +144,9 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtEmail">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="prompt" type="java.lang.String" value="Input Email"/>
       </Properties>
       <Events>
@@ -149,6 +161,9 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtContactNo">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="prompt" type="java.lang.String" value="Input ContactNO"/>
       </Properties>
       <Events>
@@ -317,6 +332,9 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="txtID">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="prompt" type="java.lang.String" value="input ID"/>
       </Properties>
       <Events>

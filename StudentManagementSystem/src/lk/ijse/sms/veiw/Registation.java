@@ -13,11 +13,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import lk.ijse.sms.controller.CourseController;
 import lk.ijse.sms.controller.RegistationController;
+import lk.ijse.sms.controller.RegistationDetailsController;
 import lk.ijse.sms.controller.StudentController;
 import lk.ijse.sms.dto.CourseDTO;
 import lk.ijse.sms.dto.RegistationDTO;
+import lk.ijse.sms.dto.RegistationDetailsDTO;
 import lk.ijse.sms.dto.StudentDTO;
 
 /**
@@ -29,7 +32,11 @@ public class Registation extends javax.swing.JPanel {
     /**
      * Creates new form Registation
      */
-    private RegistationController controller;
+    private   RegistationController controller;
+    
+    private  RegistationDetailsController detailsController;
+    
+    private DefaultTableModel dtm;
 //    private StudentController studentController;
 //    private CourseController courseController;
     public Registation() throws IOException {
@@ -42,6 +49,12 @@ public class Registation extends javax.swing.JPanel {
         txtRegistationID.setBorder(null);
         txtFee.setBorder(null);
         txtDate.setBorder(null);
+        txtCid.setVisible(false);
+        txtSid.setVisible(false);
+        txtsName.setBorder(null);
+        txtsEmail.setBorder(null);
+        txtcName.setBorder(null);
+        txtcDuration.setBorder(null);
     }
 
     void ShowDate(){
@@ -79,6 +92,20 @@ public class Registation extends javax.swing.JPanel {
         spDate = new org.jdesktop.swingx.JXLabel();
         spRID = new org.jdesktop.swingx.JXLabel();
         spFee = new org.jdesktop.swingx.JXLabel();
+        jXLabel7 = new org.jdesktop.swingx.JXLabel();
+        jXLabel8 = new org.jdesktop.swingx.JXLabel();
+        jXLabel9 = new org.jdesktop.swingx.JXLabel();
+        jXLabel10 = new org.jdesktop.swingx.JXLabel();
+        txtsName = new org.jdesktop.swingx.JXTextField();
+        txtcDuration = new org.jdesktop.swingx.JXTextField();
+        txtcName = new org.jdesktop.swingx.JXTextField();
+        txtsEmail = new org.jdesktop.swingx.JXTextField();
+        txtCid = new org.jdesktop.swingx.JXTextField();
+        txtSid = new org.jdesktop.swingx.JXTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -91,41 +118,51 @@ public class Registation extends javax.swing.JPanel {
         jXLabel2.setText("Registation ID  :- ");
         jXLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         add(jXLabel2);
-        jXLabel2.setBounds(110, 60, 120, 30);
+        jXLabel2.setBounds(110, 20, 120, 30);
 
         jXLabel3.setText("Student ID         :-");
         jXLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         add(jXLabel3);
-        jXLabel3.setBounds(110, 130, 120, 30);
+        jXLabel3.setBounds(110, 70, 120, 30);
 
         jXLabel4.setText("Course ID          :-");
         jXLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         add(jXLabel4);
-        jXLabel4.setBounds(110, 190, 120, 30);
+        jXLabel4.setBounds(110, 120, 120, 30);
 
         jXLabel5.setText("Fee                      :-");
         jXLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         add(jXLabel5);
-        jXLabel5.setBounds(110, 260, 130, 30);
+        jXLabel5.setBounds(110, 170, 130, 30);
 
+        cmbCourseID.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cmbCourseID.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbCourseIDItemStateChanged(evt);
             }
         });
         add(cmbCourseID);
-        cmbCourseID.setBounds(260, 190, 430, 30);
-        add(cmbStudentID);
-        cmbStudentID.setBounds(260, 130, 430, 30);
+        cmbCourseID.setBounds(260, 120, 430, 30);
 
+        cmbStudentID.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmbStudentID.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbStudentIDItemStateChanged(evt);
+            }
+        });
+        add(cmbStudentID);
+        cmbStudentID.setBounds(260, 70, 430, 30);
+
+        txtDate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 txtDatePropertyChange(evt);
             }
         });
         add(txtDate);
-        txtDate.setBounds(260, 330, 430, 30);
+        txtDate.setBounds(260, 220, 430, 30);
 
+        txtRegistationID.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtRegistationID.setPrompt("Input Registation ID");
         txtRegistationID.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -133,22 +170,23 @@ public class Registation extends javax.swing.JPanel {
             }
         });
         add(txtRegistationID);
-        txtRegistationID.setBounds(260, 60, 430, 30);
+        txtRegistationID.setBounds(260, 20, 430, 30);
 
+        txtFee.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         txtFee.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 txtFeePropertyChange(evt);
             }
         });
         add(txtFee);
-        txtFee.setBounds(260, 260, 430, 30);
+        txtFee.setBounds(260, 170, 430, 30);
 
         tblRegistation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Registation ID", "Student ID", "Course ID", "Fee", "Date"
+                "Registation ID", "Student ID", "Course ID", "Fee", "Date", "Student Name", "Student Email", "Course Name", "Course Duration"
             }
         ));
         jScrollPane1.setViewportView(tblRegistation);
@@ -203,39 +241,120 @@ public class Registation extends javax.swing.JPanel {
             }
         });
         add(lblSearch);
-        lblSearch.setBounds(700, 60, 30, 30);
+        lblSearch.setBounds(700, 20, 30, 30);
 
-        jXLabel6.setText("Date                    :-");
+        jXLabel6.setText("Course Duration :-");
         jXLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         add(jXLabel6);
-        jXLabel6.setBounds(110, 330, 140, 30);
+        jXLabel6.setBounds(510, 410, 120, 30);
 
         spDate.setBackground(new java.awt.Color(153, 153, 153));
         add(spDate);
-        spDate.setBounds(260, 360, 430, 2);
+        spDate.setBounds(260, 250, 430, 2);
 
         spRID.setBackground(new java.awt.Color(153, 153, 153));
         add(spRID);
-        spRID.setBounds(260, 90, 430, 2);
+        spRID.setBounds(260, 50, 430, 2);
 
         spFee.setBackground(new java.awt.Color(153, 153, 153));
         add(spFee);
-        spFee.setBounds(260, 290, 430, 2);
+        spFee.setBounds(260, 200, 430, 2);
+
+        jXLabel7.setText("Date                    :-");
+        jXLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        add(jXLabel7);
+        jXLabel7.setBounds(110, 220, 120, 30);
+
+        jXLabel8.setText("Student Name  :-");
+        jXLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        add(jXLabel8);
+        jXLabel8.setBounds(110, 270, 120, 30);
+
+        jXLabel9.setText("Student Email  :-");
+        jXLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        add(jXLabel9);
+        jXLabel9.setBounds(110, 320, 120, 30);
+
+        jXLabel10.setText("Course Name  :-");
+        jXLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        add(jXLabel10);
+        jXLabel10.setBounds(110, 370, 120, 30);
+
+        txtsName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        add(txtsName);
+        txtsName.setBounds(260, 270, 430, 30);
+
+        txtcDuration.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtcDuration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcDurationActionPerformed(evt);
+            }
+        });
+        add(txtcDuration);
+        txtcDuration.setBounds(640, 410, 290, 30);
+
+        txtcName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        add(txtcName);
+        txtcName.setBounds(260, 370, 430, 30);
+
+        txtsEmail.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        add(txtsEmail);
+        txtsEmail.setBounds(260, 320, 430, 30);
+
+        txtCid.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        add(txtCid);
+        txtCid.setBounds(720, 310, 210, 30);
+
+        txtSid.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtSid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSidActionPerformed(evt);
+            }
+        });
+        add(txtSid);
+        txtSid.setBounds(720, 350, 210, 30);
+
+        jSeparator1.setBackground(new java.awt.Color(153, 153, 153));
+        add(jSeparator1);
+        jSeparator1.setBounds(640, 440, 290, 10);
+
+        jSeparator2.setBackground(new java.awt.Color(153, 153, 153));
+        add(jSeparator2);
+        jSeparator2.setBounds(260, 300, 430, 10);
+
+        jSeparator3.setBackground(new java.awt.Color(153, 153, 153));
+        add(jSeparator3);
+        jSeparator3.setBounds(260, 350, 430, 10);
+
+        jSeparator4.setBackground(new java.awt.Color(153, 153, 153));
+        add(jSeparator4);
+        jSeparator4.setBounds(260, 400, 430, 10);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         
+        
+       
         try {
-            String rid = txtRegistationID.getText();
-            String sid = cmbStudentID.getSelectedItem().toString();
-            String cid = cmbCourseID.getSelectedItem().toString();
-            String fee = txtFee.getText();
-            String date = txtDate.getText();
+            String rid = txtRegistationID.getText().trim();
+            String sid = txtSid.getText().trim();
+            String cid = txtCid.getText().trim();
+            String fee = txtFee.getText().trim();
+            String date = txtDate.getText().trim();
+            
+            String sName = txtsName.getText().trim();
+            String sEmail = txtsEmail.getText().trim();
+            String cName = txtcName.getText().trim();
+            String cDuration = txtcDuration.getText().trim();
             
             RegistationDTO registationDTO = new RegistationDTO(rid, sid, cid, fee, date);
             
-            boolean result = controller.save(registationDTO);
+            RegistationDetailsDTO registationDetailsDTO = new RegistationDetailsDTO(sName, sEmail, cName, cDuration);
             
+            
+            
+            boolean result = controller.save(registationDTO);
+            boolean detailsResult = detailsController.save(registationDetailsDTO);
             if (result) {
                 JOptionPane.showMessageDialog(this, "Registation Succsess");
             }else{
@@ -244,6 +363,10 @@ public class Registation extends javax.swing.JPanel {
         } catch (Exception ex) {
             Logger.getLogger(Registation.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+            
+           
+       
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
@@ -281,14 +404,101 @@ public class Registation extends javax.swing.JPanel {
         try {
             CourseController courseController = new CourseController();
             CourseDTO courseDTO = courseController.search(cmbCourseID.getSelectedItem().toString());
+            txtCid.setText(courseDTO.getId());
             txtFee.setText(courseDTO.getFee());
-            
+            txtcName.setText(courseDTO.getcName());
+            txtcDuration.setText(courseDTO.getcDuration());
         } catch (IOException ex) {
             Logger.getLogger(Registation.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(Registation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cmbCourseIDItemStateChanged
+
+    private void cmbStudentIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbStudentIDItemStateChanged
+        try {
+            StudentController studentController = new StudentController();
+            StudentDTO studentDTO = studentController.search(cmbStudentID.getSelectedItem().toString());
+            txtSid.setText(studentDTO.getId());
+            txtsName.setText(studentDTO.getName());
+            txtsEmail.setText(studentDTO.getEmail());
+        } catch (IOException ex) {
+            Logger.getLogger(Registation.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Registation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_cmbStudentIDItemStateChanged
+
+    private void txtcDurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcDurationActionPerformed
+        // TODO add your handling code here:
+        
+        
+//        dtm=(DefaultTableModel) tblRegistation.getModel();
+//        
+//        String rID = txtRegistationID.getText();
+//        String sID = (String) cmbCourseID.getSelectedItem();
+//        String cID = (String) cmbCourseID.getSelectedItem();
+//        String fee = txtFee.getText();
+//        String date = txtDate.getText();
+//        String sName = txtsName.getText();
+//        String sEmail = txtsEmail.getText();
+//        String cName = txtcName.getText();
+//        String cDuration = txtcDuration.getText();
+//        
+//        
+//        for(int i = 0; i<dtm.getRowCount();i++){
+//            String code = (String) dtm.getValueAt(i, i);
+//            if (sID==code) {
+//                String s
+//            }
+//        }
+
+
+
+
+
+
+//        double totalAmount = 0;
+//        dtm=(DefaultTableModel) tblOrder.getModel();
+//        String itemCode = (String) cmbItemCode.getSelectedItem();
+////        String name=(String) cmbCustID.getSelectedItem();
+////        String description = txtDiscription.getText();
+////        String orderID=txtOrderID.getText();
+////        double unitPrice = Double.parseDouble(txtUnitPrice.getText());
+//      double qty = Double.parseDouble(txtQTY.getText());
+//      double unitPrice =Double.parseDouble(txtUnitPrice.getText());
+////      double unitprice = Double.parseDouble(contact)
+////       String Payment=(String) cmbPayment.getSelectedItem();
+////     
+//        for (int i = 0; i < dtm.getRowCount(); i++) {
+//            String code = (String) dtm.getValueAt(i, 1);
+//            if (itemCode==code) {
+//                double quantity = (double) dtm.getValueAt(i, 3);
+//                qty += quantity;
+//                dtm.removeRow(i);
+//
+//            }
+//        }
+//        int qtynew=Integer.parseInt(txtQTY.getText());
+//        double up=Double.parseDouble(txtUnitPrice.getText());
+//        double total=qtynew*up;
+//       
+//       finalTotal=finalTotal+total;
+//       txtTotal.setText(finalTotal+"");
+//       
+//        
+//        double amount = unitPrice * qty;
+//        totalAmount += amount;
+//        txtTotal.setText("" + totalAmount);
+//
+//        Object ob[] = {txtOrderID.getText(),cmbCustID.getSelectedItem(), cmbItemCode.getSelectedItem(), txtQTY.getText(),cmbPayment.getSelectedItem(),txtUnitPrice.getText() ,total};
+//        dtm.addRow(ob);
+    }//GEN-LAST:event_txtcDurationActionPerformed
+
+    private void txtSidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSidActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -299,20 +509,34 @@ public class Registation extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXComboBox cmbCourseID;
     private org.jdesktop.swingx.JXComboBox cmbStudentID;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private org.jdesktop.swingx.JXLabel jXLabel1;
+    private org.jdesktop.swingx.JXLabel jXLabel10;
     private org.jdesktop.swingx.JXLabel jXLabel2;
     private org.jdesktop.swingx.JXLabel jXLabel3;
     private org.jdesktop.swingx.JXLabel jXLabel4;
     private org.jdesktop.swingx.JXLabel jXLabel5;
     private org.jdesktop.swingx.JXLabel jXLabel6;
+    private org.jdesktop.swingx.JXLabel jXLabel7;
+    private org.jdesktop.swingx.JXLabel jXLabel8;
+    private org.jdesktop.swingx.JXLabel jXLabel9;
     private org.jdesktop.swingx.JXLabel lblSearch;
     private org.jdesktop.swingx.JXLabel spDate;
     private org.jdesktop.swingx.JXLabel spFee;
     private org.jdesktop.swingx.JXLabel spRID;
     private org.jdesktop.swingx.JXTable tblRegistation;
+    private org.jdesktop.swingx.JXTextField txtCid;
     private org.jdesktop.swingx.JXTextField txtDate;
     private org.jdesktop.swingx.JXTextField txtFee;
     private org.jdesktop.swingx.JXTextField txtRegistationID;
+    private org.jdesktop.swingx.JXTextField txtSid;
+    private org.jdesktop.swingx.JXTextField txtcDuration;
+    private org.jdesktop.swingx.JXTextField txtcName;
+    private org.jdesktop.swingx.JXTextField txtsEmail;
+    private org.jdesktop.swingx.JXTextField txtsName;
     // End of variables declaration//GEN-END:variables
 
     

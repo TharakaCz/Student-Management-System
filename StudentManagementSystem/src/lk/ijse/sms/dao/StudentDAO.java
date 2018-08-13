@@ -28,7 +28,7 @@ public class StudentDAO {
         if (!file.exists()) {
             boolean createNewFile = file.createNewFile();
         }
-        //rwLock.writeLock().lock();
+        
         String data = "";
         data += studentDTO.getId() + " ";
         data += studentDTO.getName() + " ";
@@ -47,7 +47,6 @@ public class StudentDAO {
             if (bufferedWriter != null) {
                 bufferedWriter.close();
             }
-         //   rwLock.writeLock().unlock();
         }
     
     }
